@@ -5,6 +5,7 @@
 
 # Board
 
+
 class Player():
     name = ''
     turn = ''
@@ -14,8 +15,13 @@ class Player():
         self.name = name
 
     def setTurn(self):
-        turn = input("What are you (x or o): ")
-        self.turn = turn
+        while True:
+            turn = input("What are you (x or o): ")
+            if (turn == 'x' or turn == 'o'):
+                self.turn = turn
+                break
+            else:
+                print('wrong value')
 
 
 board = [['0', '|', '1', '|', '2'],
@@ -39,6 +45,10 @@ def replaceValue(board, value, position):
     printBoard(board)
 
 
+def reGame():
+    gameOn()
+
+
 def gameOn():
     print("Welcome to a Tic Tac Toe Game.")
     player1 = Player()
@@ -47,7 +57,8 @@ def gameOn():
     player2 = Player()
     player2.setName()
     player2.setTurn()
-    counter = 0
+    count = 0
+    turn = 0
     playerTurn = input("Who is going first: ")
     printBoard(board)
     while True:
@@ -57,17 +68,16 @@ def gameOn():
                 replaceValue(board, 'x', position)
                 print("It is o turn")
                 playerTurn = 'o'
-                counter = counter + 1
+                turn = turn + 1
+                count = count + 1
             elif(playerTurn == 'o'):
                 position = int(input("What position are you taking: "))
                 replaceValue(board, 'o', position)
                 print("It is x turn")
                 playerTurn = 'x'
-                counter = counter + 1
-            else:
-                print("Enter the correct value")
-
-        if(counter % 3 == 0):
+                turn = turn + 1
+                count = count + 1
+        if(turn % 3 == 0):
             if(board[0][0] == board[0][2] == board[0][4] == 'x' or board[0][0] == board[1][0] == board[2][0] == 'x' or board[0][4] == board[1][4] == board[2][4] == 'x' or board[0][2] == board[1][2] == board[2][2] == 'x' or board[1][0] == board[1][2] == board[1][4] == 'x' or board[1][0] == board[1][2] == board[1][4] == 'x' or board[2][0] == board[2][2] == board[2][4] == 'x' or board[0][0] == board[1][2] == board[2][4] == 'x' or board[0][4] == board[1][2] == board[2][0] == 'x'):
                 if(player1.turn == 'x'):
                     print("The winner is {}".format(player1.name))
@@ -86,5 +96,14 @@ def gameOn():
                 else:
                     continue
 
+        if(count == 9):
+            print("The game is a draw")
+            choice = input("Do you want to play again: ")
+            if(choice == 'yes'):
+                reGame()
+            else:
+                break
+
 
 gameOn()
+print("The game is over")
