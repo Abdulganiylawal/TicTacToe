@@ -6,9 +6,9 @@
 # Board
 
 
-class Player():
-    name = ''
-    turn = ''
+class Player:
+    name = ""
+    turn = ""
 
     def setName(self):
         name = input("What is the name of the player: ")
@@ -17,28 +17,39 @@ class Player():
     def setTurn(self):
         while True:
             turn = input("What are you (x or o): ")
-            if (turn == 'x' or turn == 'o'):
+            if turn == "x" or turn == "o":
                 self.turn = turn
                 break
             else:
-                print('wrong value')
+                print("wrong value")
 
 
-board = [['0', '|', '1', '|', '2'],
-         ['3', '|', '4', '|', '5'],
-         ['6', '|', '7', '|', '8'], ]
+board = [
+    ["0", "|", "1", "|", "2"],
+    ["3", "|", "4", "|", "5"],
+    ["6", "|", "7", "|", "8"],
+]
 
 
 def printBoard(board):
     for i in range(len(board)):
         for j in range(len(board[i])):
-            print(board[i][j], end='          ')
+            print(board[i][j], end="          ")
         print()
 
 
 def replaceValue(board, value, position):
-    patterns = {0: (0, 0), 1: (0, 2), 2: (0, 4),
-                3: (1, 0), 4: (1, 2), 5: (1, 4), 6: (2, 0), 7: (2, 2), 8: (2, 4)}
+    patterns = {
+        0: (0, 0),
+        1: (0, 2),
+        2: (0, 4),
+        3: (1, 0),
+        4: (1, 2),
+        5: (1, 4),
+        6: (2, 0),
+        7: (2, 2),
+        8: (2, 4),
+    }
     x = y = 0
     x, y = patterns[position]
     board[x][y] = value
@@ -62,44 +73,63 @@ def gameOn():
     playerTurn = input("Who is going first: ")
     printBoard(board)
     while True:
-        if(playerTurn == 'x' or playerTurn == 'o'):
-            if(playerTurn == 'x'):
+        if playerTurn == "x" or playerTurn == "o":
+            if playerTurn == "x":
                 position = int(input("What position are you taking: "))
-                replaceValue(board, 'x', position)
+                replaceValue(board, "x", position)
                 print("It is o turn")
-                playerTurn = 'o'
+                playerTurn = "o"
                 turn = turn + 1
                 count = count + 1
-            elif(playerTurn == 'o'):
+            elif playerTurn == "o":
                 position = int(input("What position are you taking: "))
-                replaceValue(board, 'o', position)
+                replaceValue(board, "o", position)
                 print("It is x turn")
-                playerTurn = 'x'
+                playerTurn = "x"
                 turn = turn + 1
                 count = count + 1
-        if(turn % 3 == 0):
-            if(board[0][0] == board[0][2] == board[0][4] == 'x' or board[0][0] == board[1][0] == board[2][0] == 'x' or board[0][4] == board[1][4] == board[2][4] == 'x' or board[0][2] == board[1][2] == board[2][2] == 'x' or board[1][0] == board[1][2] == board[1][4] == 'x' or board[1][0] == board[1][2] == board[1][4] == 'x' or board[2][0] == board[2][2] == board[2][4] == 'x' or board[0][0] == board[1][2] == board[2][4] == 'x' or board[0][4] == board[1][2] == board[2][0] == 'x'):
-                if(player1.turn == 'x'):
-                    print("The winner is {}".format(player1.name))
-                    break
-                elif(player2.turn == 'x'):
-                    print("The winner is {}".format(player2.name))
-                    break
+        if (
+            board[0][0] == board[0][2] == board[0][4] == "x"
+            or board[0][0] == board[1][0] == board[2][0] == "x"
+            or board[0][4] == board[1][4] == board[2][4] == "x"
+            or board[0][2] == board[1][2] == board[2][2] == "x"
+            or board[1][0] == board[1][2] == board[1][4] == "x"
+            or board[1][0] == board[1][2] == board[1][4] == "x"
+            or board[2][0] == board[2][2] == board[2][4] == "x"
+            or board[0][0] == board[1][2] == board[2][4] == "x"
+            or board[0][4] == board[1][2] == board[2][0] == "x"
+        ):
+            if player1.turn == "x":
+                print("The winner is {}".format(player1.name))
+                break
+            elif player2.turn == "x":
+                print("The winner is {}".format(player2.name))
+                break
 
-            elif(board[0][0] == board[0][2] == board[0][4] == 'o' or board[0][0] == board[1][0] == board[2][0] == 'o' or board[0][4] == board[1][4] == board[2][4] == 'o' or board[0][2] == board[1][2] == board[2][2] == 'o' or board[1][0] == board[1][2] == board[1][4] == 'o' or board[1][0] == board[1][2] == board[1][4] == 'o' or board[2][0] == board[2][2] == board[2][4] == 'o' or board[0][0] == board[1][2] == board[2][4] == 'o' or board[0][4] == board[1][2] == board[2][0] == 'o'):
-                if(player1.turn == '0'):
-                    print("The winner is {}".format(player1.name))
-                    break
-                elif(player2.turn == 'o'):
-                    print("The winner is {}".format(player2.name))
-                    break
-                else:
-                    continue
+        elif (
+            board[0][0] == board[0][2] == board[0][4] == "o"
+            or board[0][0] == board[1][0] == board[2][0] == "o"
+            or board[0][4] == board[1][4] == board[2][4] == "o"
+            or board[0][2] == board[1][2] == board[2][2] == "o"
+            or board[1][0] == board[1][2] == board[1][4] == "o"
+            or board[1][0] == board[1][2] == board[1][4] == "o"
+            or board[2][0] == board[2][2] == board[2][4] == "o"
+            or board[0][0] == board[1][2] == board[2][4] == "o"
+            or board[0][4] == board[1][2] == board[2][0] == "o"
+        ):
+            if player1.turn == "0":
+                print("The winner is {}".format(player1.name))
+                break
+            elif player2.turn == "o":
+                print("The winner is {}".format(player2.name))
+                break
+            else:
+                continue
 
-        if(count == 9):
+        elif count == 9:
             print("The game is a draw")
             choice = input("Do you want to play again: ")
-            if(choice == 'yes'):
+            if choice == "yes":
                 reGame()
             else:
                 break
