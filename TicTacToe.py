@@ -5,6 +5,8 @@
 
 # Board
 
+myList = []
+
 
 class Player:
     name = ""
@@ -50,9 +52,16 @@ def replaceValue(board, value, position):
         7: (2, 2),
         8: (2, 4),
     }
-    x = y = 0
-    x, y = patterns[position]
-    board[x][y] = value
+    while True:
+        if position not in myList:
+            x = y = 0
+            x, y = patterns[position]
+            board[x][y] = value
+            myList.append(position)
+            break
+        else:
+            position = int(input(
+                "This position has been used. Enter another position: "))
     printBoard(board)
 
 
