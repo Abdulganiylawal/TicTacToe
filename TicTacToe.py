@@ -65,10 +65,6 @@ def replaceValue(board, value, position):
     printBoard(board)
 
 
-def reGame():
-    gameOn()
-
-
 def gameOn():
     print("Welcome to a Tic Tac Toe Game.")
     player1 = Player()
@@ -137,11 +133,6 @@ def gameOn():
 
         elif count == 9:
             print("The game is a draw")
-            choice = input("Do you want to play again: ")
-            if choice == "yes":
-                reGame()
-            else:
-                break
 
 
 gameOn()
