@@ -86,7 +86,7 @@ def gameOn():
                 playerTurn = "o"
                 turn = turn + 1
                 count = count + 1
-            elif playerTurn == "o":
+            elif playerTurn == "O":
                 position = int(input("What position are you taking: "))
                 replaceValue(board, "o", position)
                 print("It is x turn")
